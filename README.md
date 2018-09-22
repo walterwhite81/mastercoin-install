@@ -5,7 +5,7 @@ Use at your own risk.
 
 ## VPS installation
 ```
-wget -N https://raw.githubusercontent.com/MastercoinOne/MastercoinNew/blob/master/mc_install.sh
+wget -N https://raw.githubusercontent.com/walterwhite81/mastercoin-install/master/mc_install.sh
 bash mc_install.sh
 ```
 ***
