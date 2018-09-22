@@ -1,16 +1,16 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='zantix.conf'
-CONFIGFOLDER='/root/.zantix'
-COIN_DAEMON='zantixd'
-COIN_CLI='zantix-cli'
+CONFIG_FILE='mastercoin.conf'
+CONFIGFOLDER='/root/.mastercoin'
+COIN_DAEMON='mastercoind'
+COIN_CLI='mastercoin-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ='https://github.com/ZantixCoin/Zantix/releases/download/v1.0.0/zantix-1.0.0-x86_64-linux-gnu.tar.gz'
+COIN_TGZ='https://github.com/MasterCoinOne/MasterCoinNew/releases/download/v1.0/MasterCoin-1.0.0-x86_64-pc-linux-gnu.zip'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
-COIN_NAME='zantix'
-COIN_PORT=24400
-RPC_PORT=24401
+COIN_NAME='mastercoin'
+COIN_PORT=16000
+RPC_PORT=15000
 
 NODEIP=$(curl -s4 api.ipify.org)
 
@@ -25,7 +25,7 @@ function download_node() {
   cd $TMP_FOLDER >/dev/null 2>&1
   wget -q $COIN_TGZ
   compile_error
-  tar xvzf $COIN_ZIP -C $COIN_PATH
+  unzip $COIN_ZIP -C $COIN_PATH
   cd - >/dev/null 2>&1
   rm -rf $TMP_FOLDER >/dev/null 2>&1
   clear
@@ -121,9 +121,6 @@ maxconnections=256
 masternode=1
 externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
-addnode=40.114.69.31:24400
-addnode=104.40.156.80:24400
-addnode=40.121.17.246:24400
 EOF
 }
 
@@ -201,7 +198,7 @@ apt-get update >/dev/null 2>&1
 apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" make software-properties-common \
 build-essential libtool autoconf libssl-dev libboost-dev libboost-chrono-dev libboost-filesystem-dev libboost-program-options-dev \
 libboost-system-dev libboost-test-dev libboost-thread-dev sudo automake git wget curl libdb4.8-dev bsdmainutils libdb4.8++-dev \
-libminiupnpc-dev libgmp3-dev ufw pkg-config libevent-dev  unzip libzmq5 >/dev/null 2>&1
+libminiupnpc-dev libgmp3-dev ufw pkg-config libevent-dev unzip libzmq5 >/dev/null 2>&1
 if [ "$?" -gt "0" ];
   then
     echo -e "${RED}Not all required packages were installed properly. Try to install them manually by running the following commands:${NC}\n"
