@@ -6,7 +6,7 @@ CONFIGFOLDER='/root/.mastercoin'
 COIN_DAEMON='mastercoind'
 COIN_CLI='mastercoin-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ='https://github.com/MasterCoinOne/MasterCoinV2/releases/download/v1.0/MasterCoin-1.0.0-x86_64-pc-linux-gnu.zip'
+COIN_TGZ='https://github.com/MasterCoinOne/MasterCoinV2/releases/download/v1.0.1.0/mastercoin-1.0.1-linux.tar.gz'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='mastercoin'
 COIN_PORT=16000
@@ -25,8 +25,8 @@ function download_node() {
   cd $TMP_FOLDER >/dev/null 2>&1
   wget -q $COIN_TGZ
   compile_error
-  #tar xvzf $COIN_ZIP -C $COIN_PATH #uncomment when package is tarred. Comment the zip line below.
-  unzip $COIN_ZIP -d $COIN_PATH
+  tar xvzf $COIN_ZIP -C $COIN_PATH
+  #unzip $COIN_ZIP -d $COIN_PATH
   cd - >/dev/null 2>&1
   rm -rf $TMP_FOLDER >/dev/null 2>&1
   clear
